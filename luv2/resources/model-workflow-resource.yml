@@ -21,6 +21,7 @@ resources:
       tasks:
         - task_key: Train
           cluster: "Harsha Bhargav Yarramsetty Harsha Bhargav's Personal Compute Cluster"  # Reference existing cluster by name
+          existing_cluster_id: 0314-205222-dk66fded
           # job_cluster_key: model_training_job_cluster
           notebook_task:
             notebook_path: ../training/notebooks/Train.py
@@ -35,6 +36,7 @@ resources:
           
         - task_key: ModelValidation
           cluster: "Harsha Bhargav Yarramsetty Harsha Bhargav's Personal Compute Cluster"  # Reference existing cluster by name
+          existing_cluster_id: 0314-205222-dk66fded
           # job_cluster_key: model_training_job_cluster
           depends_on:
             - task_key: Train
@@ -79,6 +81,7 @@ resources:
               git_source_info: url:${bundle.git.origin_url}; branch:${bundle.git.branch}; commit:${bundle.git.commit}
         - task_key: ModelDeployment
           cluster: "Harsha Bhargav Yarramsetty Harsha Bhargav's Personal Compute Cluster"  # Reference existing cluster by name
+          existing_cluster_id: 0314-205222-dk66fded
           # job_cluster_key: model_training_job_cluster
           depends_on:
             - task_key: ModelValidation
