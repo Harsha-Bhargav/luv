@@ -1,15 +1,15 @@
-new_cluster: &new_cluster
-  new_cluster:
-    num_workers: 3
-    spark_version: 13.3.x-cpu-ml-scala2.12
-    node_type_id: Standard_D3_v2
-    custom_tags:
-      clusterSource: mlops-stacks_0.3
+# new_cluster: &new_cluster
+#   new_cluster:
+#     num_workers: 3
+#     spark_version: 13.3.x-cpu-ml-scala2.12
+#     node_type_id: Standard_D3_v2
+#     custom_tags:
+#       clusterSource: mlops-stacks_0.3
 
-common_permissions: &permissions
-  permissions:
-    - level: CAN_VIEW
-      group_name: users
+# common_permissions: &permissions
+#   permissions:
+#     - level: CAN_VIEW
+#       group_name: users
 
 resources:
   jobs:
@@ -17,7 +17,8 @@ resources:
       name: ${bundle.target}-luv2-batch-inference-job
       tasks:
         - task_key: batch_inference_job
-          <<: *new_cluster
+          cluster: "Harsha Bhargav Yarramsetty Harsha Bhargav's Personal Compute Cluster"  # Reference existing cluster by name
+          # <<: *new_cluster
           notebook_task:
             notebook_path: ../deployment/batch_inference/notebooks/BatchInference.py
             base_parameters:
@@ -28,10 +29,10 @@ resources:
               # git source information of current ML resource deployment. It will be persisted as part of the workflow run
               git_source_info: url:${bundle.git.origin_url}; branch:${bundle.git.branch}; commit:${bundle.git.commit}
 
-      schedule:
-        quartz_cron_expression: "0 0 11 * * ?" # daily at 11am
-        timezone_id: UTC
-      <<: *permissions
+      # schedule:
+      #   quartz_cron_expression: "0 0 11 * * ?" # daily at 11am
+      #   timezone_id: UTC
+      # <<: *permissions
       # If you want to turn on notifications for this job, please uncomment the below code,
       # and provide a list of emails to the on_failure argument.
       #
