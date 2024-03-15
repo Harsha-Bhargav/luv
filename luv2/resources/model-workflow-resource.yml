@@ -6,10 +6,10 @@
 #     custom_tags:
 #       clusterSource: mlops-stacks_0.3
 
-# common_permissions: &permissions
-#   permissions:
-#     - level: CAN_VIEW
-#       group_name: users
+common_permissions: &permissions
+  permissions:
+    - level: CAN_VIEW
+      group_name: users
 
 resources:
   jobs:
