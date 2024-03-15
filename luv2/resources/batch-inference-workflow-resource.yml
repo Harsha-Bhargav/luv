@@ -8,7 +8,7 @@
 
 common_permissions: &permissions
   permissions:
-    - level: CAN_VIEW
+    - level: CAN_MANAGE
       group_name: users
 
 resources:
